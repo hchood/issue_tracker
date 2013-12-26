@@ -11,19 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131226190915) do
+ActiveRecord::Schema.define(version: 20131226201957) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: true do |t|
+    t.string "name", null: false
+  end
 
   create_table "issues", force: true do |t|
     t.string   "title"
     t.text     "description"
     t.boolean  "is_reproducible"
-    t.string   "category"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "severity",        null: false
+    t.integer  "category_id"
   end
 
 end

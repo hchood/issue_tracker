@@ -1,9 +1,7 @@
 class Issue < ActiveRecord::Base
   validates_presence_of :title, :description, :category, :severity
 
-  def self.categories
-    ['Bug', 'Feature Request', 'Customer Service']
-  end
+  belongs_to :category, inverse_of: :issues
 
   def self.severities
     ['High', 'Moderate', 'Low']

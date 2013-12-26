@@ -1,19 +1,6 @@
 require 'spec_helper'
 
 describe Issue do
-  describe '.categories' do
-    it 'includes Bug' do
-      expect(Issue.categories).to include("Bug")
-    end
-
-    it 'includes Feature Request' do
-      expect(Issue.categories).to include("Feature Request")
-    end
-
-    it 'includes Customer Service' do
-      expect(Issue.categories).to include("Customer Service")
-    end
-  end
 
   describe '.severities' do
     it 'includes High' do
@@ -31,4 +18,10 @@ describe Issue do
 
   it { should_not have_valid(:category).when(nil) }
   it { should_not have_valid(:severity).when(nil) }
+  it { should belong_to :category }
+
+  it { should validate_presence_of :title }
+  it { should validate_presence_of :description }
+  it { should validate_presence_of :category }
+  it { should validate_presence_of :severity }
 end
