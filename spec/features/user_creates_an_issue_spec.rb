@@ -10,7 +10,11 @@ feature "User creates an issue", %q{
   # * I must provide a title
   # * I must provide description
   # * I can mark the issue as reproducible
-  # * I can specify the category of the issue
+  # * I must choose a category for the issue
+  # * I can categorize an issue as either "Bug", "Feature Request", or "Customer Service Issue"
+
+  # * I can rate the severity of the `Issue` as either "High", "Moderate" or "Low"
+  # * I must choose a severity
 
   context "with valid attributes" do
     it "creates an issue with valid attributes" do
@@ -21,6 +25,7 @@ feature "User creates an issue", %q{
         # Check the checkbox with a label that says 'Is reproducible'
       check "Is reproducible"
       select "Feature Request", from: "Category"
+      choose "Moderate"
       click_on "Create Issue"
 
       expect(page).to have_content "Issue was successfully created"
@@ -36,6 +41,7 @@ feature "User creates an issue", %q{
       expect(page).to have_content "Title can't be blank"
       expect(page).to have_content "Description can't be blank"
       expect(page).to have_content "Category can't be blank"
+      expect(page).to have_content "Severity can't be blank"
     end
   end
 end
