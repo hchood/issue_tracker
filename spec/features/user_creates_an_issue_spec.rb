@@ -20,7 +20,7 @@ feature "User creates an issue", %q{
       fill_in "Description", with: "The sign in link is broken"
         # Check the checkbox with a label that says 'Is reproducible'
       check "Is reproducible"
-      fill_in "Category", with: "bug"
+      select "Feature Request", from: "Category"
       click_on "Create Issue"
 
       expect(page).to have_content "Issue was successfully created"
@@ -35,6 +35,7 @@ feature "User creates an issue", %q{
 
       expect(page).to have_content "Title can't be blank"
       expect(page).to have_content "Description can't be blank"
+      expect(page).to have_content "Category can't be blank"
     end
   end
 end
