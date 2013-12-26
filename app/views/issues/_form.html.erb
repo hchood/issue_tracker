@@ -31,7 +31,7 @@
     <%= f.label :severity %><br>
     <% Issue.severities.each do |level| %>
       <%= f.radio_button :severity, level %>
-      <%= f.label :severity, level %>
+      <%= f.label :severity, level, value: level %>
     <% end %>
   </div>
   <div class="actions">
